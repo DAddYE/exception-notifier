@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 
 PKG_NAME      = 'exception-notifier'
-PKG_VERSION   = "1.1"
+PKG_VERSION   = "1.3"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
@@ -50,8 +50,13 @@ Rake::GemPackageTask.new(spec) do |p|
 end
 
 desc "Install the gem locally"
-task :install => [:repackage] do
+task :install => [:uninstall, :repackage] do
   sh %{sudo gem install pkg/#{PKG_FILE_NAME}.gem}
+end
+
+desc "Unistall the gem from local"
+task :uninstall => [:clean] do
+  sh %{sudo gem uninstall #{PKG_NAME}}
 end
  
 desc "Generate a gemspec file for GitHub"

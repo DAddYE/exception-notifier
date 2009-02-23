@@ -1,7 +1,7 @@
 A <%= @exception.class %> occurred in <%= @controller.controller_name %>#<%= @controller.action_name %>:
 
-  <%= @exception.message %>
-  <%= @backtrace.join("\n") %>
+<%=h @exception.message %>
+<%=h @backtrace.join("\n") %>
   
 * URL       : <%= @request.protocol %><%= @host %><%= @request.request_uri %>
 * IP address: <%= @request.env["HTTP_X_FORWARDED_FOR"] || @request.env["REMOTE_ADDR"] %>

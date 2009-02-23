@@ -22,7 +22,7 @@ module Lipsiadmin
       def exception(exception, controller, request)
         content_type "text/plain"
 
-        subject    "#{email_prefix} #{exception.message.inspect}"
+        subject    "#{email_prefix} A #{exception.class} occurred in #{controller.controller_name}##{controller.action_name}"
 
         recipients recipients_addresses
         from       sender_address
