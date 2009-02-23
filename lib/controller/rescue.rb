@@ -25,14 +25,19 @@ module Lipsiadmin
       def rescue_action_in_public_with_notifier(exception) #:doc:
         response_code = response_code_for_rescue(exception)
         status        = interpret_status(response_code)[0,3]
-        render :template => "/exceptions/#{status}", :status => status
-        if response_code != :not_found
-          Lipsiadmin::Mailer::ExceptionNotifier.deliver_exception(exception, self, request)
+        respond_to do |format|
+          format.html { render :template => "/exceptions/#{status}", :status => status }
+          format.all  { render :nothing => true, :status => true }
+          #format.js   { render(:update) { |page| page.call "alert", interpret_status(response_code)  } }
         end
       rescue Exception => e
         logger.error e.message
         erase_results
         rescue_action_in_public_without_notifier(exception)
+      ensure
+        if response_code != :not_found
+          Lipsiadmin::Mailer::ExceptionNotifier.deliver_exception(exception, self, request)
+        end
       end
       
     end
