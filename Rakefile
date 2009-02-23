@@ -1,10 +1,9 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
-require 'rake/packagetask'
 require 'rake/gempackagetask'
 
-PKG_NAME      = 'exception_notifier'
+PKG_NAME      = 'exception-notifier'
 PKG_VERSION   = "1.0"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 

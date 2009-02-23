@@ -21,7 +21,7 @@ Installation
 ============
 
 Rails::Initializer.run do |config|
-  config.gem 'exception_notifier', :source => 'http://gems.github.com'
+  config.gem 'Lipsiasoft-exception-notifier', :lib => 'exception_notifier', :source => 'http://gems.github.com'
 end
 
 Example
