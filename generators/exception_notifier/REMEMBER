@@ -1,0 +1,9 @@
+
+================================================================
+
+Please remember to:
+
+  - Edit app/views/exceptions
+  - Edit config/initializers/exception_notifier.rb
+  
+================================================================

@@ -1,0 +1,57 @@
+ExceptionNotifier
+=================
+
+This plugin are raised when an exception fire up in controllers.
+Now you can personalize exception and simplify the layout using templates
+in app/views/exception
+when an exception is raised it try to send an email, and for send an email 
+you need to configure in enviroment.
+
+For test layouts and mailing do this:
+
+Edit enviroments/development.rb
+
+config.action_controller.consider_all_requests_local = false
+
+Then in your browser open 192.168.1.3 where 192.168.1.3 is your lan ip.
+
+Remember that if you use 127.0.0.1 Rails don't raise "production" errors.
+
+Installation
+============
+
+Rails::Initializer.run do |config|
+  config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', 
+    :source => 'http://gems.github.com'
+end
+
+Example
+=======
+
+script/generate exception_notifier [--haml-template]
+
+Personalize yours app/views/exceptions/ templates
+
+Remember that they use the layout of the controller where the exception is raised
+
+Then in /config/initializers/exception_notifier.rb 
+
+Lipsiadmin::Mailer::ExceptionNotifier.sender_address       = %("Exception Notifier" <server1@lipsiasoft.com>)
+Lipsiadmin::Mailer::ExceptionNotifier.recipients_addresses = %(info@lipsiasoft.com)
+Lipsiadmin::Mailer::ExceptionNotifier.email_prefix         = "[Your Progect]"
+
+
+Redmine
+=======
+
+This plugins is useful for redmine, if you have set the mail handler
+http://www.redmine.org/wiki/redmine/RedmineReceivingEmails
+
+you need to set the inizializers/exception_notifier.rb like this
+
+Lipsiadmin::Mailer::ExceptionNotifier.sender_address       = %("Exception Notifier" <server1@lipsiasoft.com>)
+Lipsiadmin::Mailer::ExceptionNotifier.recipients_addresses = %(info@lipsiasoft.com)
+Lipsiadmin::Mailer::ExceptionNotifier.email_prefix         = "[Your Project]"
+Lipsiadmin::Mailer::ExceptionNotifier.extra_options        = { :project => "your-project-in-redmine", :tracker => "Bug", :priority => "Urgent" }
+
+Copyright (c) 2009 Lipsiasoft s.r.l., released under the MIT license
