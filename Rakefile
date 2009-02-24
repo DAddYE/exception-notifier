@@ -12,7 +12,7 @@ $LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
 desc 'Default: install the gem.'
 task :default => [:install]
 
-desc 'Generate documentation for the paperclip plugin.'
+desc 'Generate documentation for the plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'doc'
   rdoc.title    = 'Lipsiadmin Exception Notifier'
