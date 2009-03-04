@@ -1,11 +1,6 @@
-class ExceptionNotifierGenerator < Rails::Generator::NamedBase
+class ExceptionNotifierGenerator < Rails::Generator::Base
   default_options :haml_templates => false
-  
-  def initialize(runtime_args, runtime_options = {})
-    runtime_args = ["none"].concat(runtime_args) # Skip usage
-    super
-  end
-  
+
   def manifest
     template = options[:haml_templates] ? "haml" : "erb"
     
@@ -32,6 +27,6 @@ class ExceptionNotifierGenerator < Rails::Generator::NamedBase
       opt.separator ''
       opt.separator 'Options:'
       opt.on("-t", "--haml-templates",
-             "Generate exception templates using haml template") { |v| options[:haml_templates] = v; puts v }
+             "Generate exception templates using haml template") { |v| options[:haml_templates] = v }
     end  
 end
