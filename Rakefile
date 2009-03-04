@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 
 PKG_NAME      = 'exception-notifier'
-PKG_VERSION   = "1.4"
+PKG_VERSION   = "1.4.1"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
